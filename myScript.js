@@ -1,32 +1,35 @@
-//****Climbing Log****
-let myClimbingLog= [];
+// Climbing Library Application
+// Author: Gerardo Hidalgo-Cuellar, github.com/ghidalgo93/climbingLibrary
+// Date: 10/21/20
 
-function Climb() {
+//****Variable and Object Definitions****
+let climbingLibrary= [];
+
+function Climb(name, grade, location, date, sent, type) {
 	this.name = name;
 	this.grade = grade;
-	this.area = area;
-	this.wall = wall;
-	this.gpsLoc = gpsLoc;
+	this.location = location;
 	this.date = date;
-	this.attempts = attempts;
 	this.sent = sent;
 	this.type = type;
-	this.comments = comments;
 }
 
 
 //****Functions****
-function addElementToArray(array, element) {
-	array.push(element);	
+function addClimbToLibrary(library, climb) {
+	library.push(climb);	
 }
 
-function printElementsInArray(array){
-	for (const index in array){
-		console.log(array[index]);
-	}
+function printClimbingLib(library){
+	console.table(library);
 }
 
-addElementToArray(myClimbingLog, 'foo');
-addElementToArray(myClimbingLog, 'poo');
-addElementToArray(myClimbingLog, 'roo');
-printElementsInArray(myClimbingLog);
+//****Script****
+const c1 = new Climb('american beauty', '5.12b', 'sport park', 'boulder canyon', '10/21/2020', true, 'sport');
+const c2 = new Climb('ten digit diling', '5.12d', 'wall of the 90s', 'clear creek', '10/20/2020', false, 'sport');
+
+
+addClimbToLibrary(climbingLibrary, c1);
+addClimbToLibrary(climbingLibrary, c2);
+
+printClimbingLib(climbingLibrary);

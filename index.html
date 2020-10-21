@@ -4,18 +4,13 @@
 	<meta charset="UTF-8">
 	<title>My Climbing Library</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- bootstrap4 stuff -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- my stylesheet -->
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<div id="content">
 		<h1>Climbing Library</h1>
-		<div class="row-display">
+		<div id="climbDisplay" class="row-display">
 			<form id="climbForm" class="col-display">
 				<input type="text" name="routeName" placeholder="route name">
 				<input type="text" name="grade" placeholder="grade">
@@ -27,20 +22,7 @@
 				</label>
 				<button onclick="addClimbToLibrary()">Add Climb</button>
 			</form>
-			<table id="climbTable" class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Grade</th>
-						<th>Location</th>
-						<th>Date</th>
-						<th>Type</th>
-						<th>Sent</th>
-					</tr>
-				</thead>
-				<tbody id="climbTableBody">
-				</tbody>
-			</table>
+			<table id="climbTable"></table>
 		</div>
 	</div>
 	<script type="text/javascript" src="myScript.js"></script>

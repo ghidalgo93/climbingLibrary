@@ -41,7 +41,7 @@ function removeAllChildNodes(parent){
 
 //****Variable Definitions****
 let climbLibrary = [];
-const climbTable = document.querySelector('#climbTable');
+const climbTableBody = document.querySelector('#climbTablebody');
 
 
 //****Script****

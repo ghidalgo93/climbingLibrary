@@ -1,0 +1,23 @@
+html, body {
+	height: 100%;
+	background-color: skyblue;
+}
+
+#content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-around; */
+}
+
+.row-display {
+	display: flex;
+	flex-direction: row;
+}
+
+.col-display {
+	display: flex;
+	flex-direction: column;
+}
+
+

@@ -33,7 +33,8 @@ function updateClimbLibrary(){
 }
 
 //****Variable Definitions****
-let climbLibrary= [];
+let climbLibrary = [];
+const climbTable = document.querySelector('#climbTable');
 
 
 //****Script****
@@ -41,7 +42,7 @@ const c1 = new Climb('american beauty', '5.12b', 'sport park', 'boulder canyon',
 const c2 = new Climb('ten digit diling', '5.12d', 'wall of the 90s', 'clear creek', '10/20/2020', false, 'sport');
 
 
-addClimbToLibrary(climbingLibrary, c1);
-addClimbToLibrary(climbingLibrary, c2);
+addClimbToLibrary(climbLibrary, c1);
+addClimbToLibrary(climbLibrary, c2);
 
 

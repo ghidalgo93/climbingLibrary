@@ -25,11 +25,18 @@ function addClimbToLibrary(library, climb) {
 
 // Updates a DOM table element with the given climbing library
 // input: DOM table, climbingLibrary
-function updateClimbLibrary(){
+function updateClimbLibrary(table, library){
 	//clear current table
+	removeAllChildNodes(table);
 	//loop through the library
 	//for each climb object --> create a new dom element 
 	//add that element to table
+}
+
+function removeAllChildNodes(parent){
+	while (parent.firstChild){
+		parent.removeChild(parent.firstChild);
+	}
 }
 
 //****Variable Definitions****

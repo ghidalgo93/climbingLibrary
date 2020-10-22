@@ -4,7 +4,8 @@
 
 
 //****Variable Definitions****
-let climbLibrary = [];
+let climbLib= [];
+
 
 
 //****Object Definitions****
@@ -20,6 +21,27 @@ function Climb(name, grade, location, date, type, sent) {
 
 //****Functions****
 
+function addClimb(event){
+	//prevents the form submit to reload page
+	event.preventDefault();
+	let props = ['name', 'grade', 'location', 'date', 'type', 'sent'];
+	const climb = new Climb(); 
+	let form = event.target;
+	let formInputs = form.elements;
+
+	for (let element in formInputs){
+		let prop = formInputs[element].name;
+		let value = formInputs[element].value;
+		if (props.includes(prop)){
+			climb[prop]= value;
+		}
+	}
+	//addClimbToLibrary
+	addClimbToLibrary(climbLib, climb);
+	//re renderTable
+	renderTable(climbTbl, climbLib);
+}
+
 // Adds climb object to the given library
 // input: [arr] climb library, [obj] climb 
 // return: [arr] climb library
@@ -28,31 +50,35 @@ function addClimbToLibrary(library, climb) {
 	return library;
 }
 
-// Updates a DOM table element with the given climbing library
-// input: DOM table, climbingLibrary
-function displayClimbs(table, library){
+// Renders a DOM table element with the given data
+// input: DOM table, [arr of objects] data 
+function renderTable(table, data){
 	//clear current table
-	//removeAllChildNodes(table);
-	//loop through the library
-	for (const index in library){
-		//create an empty row element and add it to the last position of the table
-		let row = table.insertRow(0);
-		//insert cells into new row element
-		//add content to those cells
-	}
+	removeAllChildNodes(table);
+	let headerRow = Object.keys(data[0]);
+	generateTable(table, data);	
+	generateTableHead(table, headerRow)
+	
 }
 
-function generateTableHead(table, data){
+// Generates a table head for a given DOM table
+// input: [DOM table] table, [array of strings] row headings 
+// return: the table head
+function generateTableHead(table, headings){
 	let thead = table.createTHead();
 	let row = thead.insertRow();
-	for (let key of data){
+	for (let key of headings){
 		let th = document.createElement('th');
 		let text = document.createTextNode(key);
 		th.appendChild(text);
 		row.appendChild(th);
 	} 
+	return thead;
 }
 
+// Generates a table for a given DOM table
+// input: [DOM table] table, [array of object] data
+// return: the table head
 function generateTable(table, data) {
 	for (let element of data) {
 		let row = table.insertRow();
@@ -64,18 +90,21 @@ function generateTable(table, data) {
 	}
 }
 
+// Removes all child nodes from a given DOM element
+// input: DOM element
+function removeAllChildNodes(parent){
+	while (parent.firstChild){
+		parent.removeChild(parent.firstChild);
+	}
+}
+
 //****DOM Definitions****
-let climbTable = document.querySelector('#climbTable');
+let climbTbl = document.querySelector('#climbTbl');
+const form = document.querySelector('#climbForm');
+form.addEventListener('submit', addClimb);
 
 
 //****Script****
-const c1 = new Climb('american beauty', '5.12b', 'sport park', 'boulder canyon', '10/21/2020', 'sport', true);
-const c2 = new Climb('ten digit diling', '5.12d', 'wall of the 90s', 'clear creek', '10/20/2020', 'sport', false);
 
-addClimbToLibrary(climbLibrary, c1);
-addClimbToLibrary(climbLibrary, c2);
 
-let data = Object.keys(climbLibrary[0]);
-generateTable(climbTable, climbLibrary);
-generateTableHead(climbTable, data);
 

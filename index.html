@@ -2,29 +2,49 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>My Climbing Library</title>
+	<title>ClimbLib</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- my stylesheet -->
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<div id="content">
+	<div id="content" class="col-display">
 		<h1>Climbing Library</h1>
-		<div id="climbDisplay" class="row-display">
+		<div id="climbDisp" class="row-display">
 			<form id="climbForm" class="col-display">
-				<input type="text" name="routeName" placeholder="route name">
-				<input type="text" name="grade" placeholder="grade">
-				<input type="text" name="location" placeholder="location">
-				<input type="text" name="date" placeholder="date">
-				<input type="text" name="type" placeholder="type">
-				<label for="sent">
-					<input id="sent" type="checkbox" name="sent">Sent
+				<input type="text" name="name" placeholder="Route Name" maxlength="200" required>
+				<input type="text" name="grade" placeholder="Grade" maxlength="200" required>
+				<input type="text" name="location" placeholder="Location" maxlength="200" required>
+				<input type="date" name="date" required>
+				<label for="type">Type
+					<select id="type" name="type">
+						<option value="sport" selected>Sport</option>
+						<option value="trad">Trad</option>
+						<option value="mixed">Mixed</option>
+						<option value="boulder">Boulder</option>
+					</select>
 				</label>
-				<button onclick="addClimbToLibrary()">Add Climb</button>
+				<label for="sent">Sent
+					<select id="sent" name="sent">
+						<option value="true" selected>Yes</option>
+						<option value="false">No</option>
+					</select>
+				</label>
+				<input type="reset">
+				<input type="submit" value="Add CLimb"></input>
 			</form>
-			<table id="climbTable"></table>
+			<table id="climbTbl"></table>
 		</div>
 	</div>
 	<script type="text/javascript" src="myScript.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

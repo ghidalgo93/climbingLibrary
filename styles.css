@@ -17,4 +17,6 @@ html, body {
 	flex-direction: column;
 }
 
-
+#climbForm {
+	background-color: grey;
+}

@@ -42,6 +42,12 @@ function addClimb(event){
 	renderTable(climbTbl, climbLib);
 }
 
+// TODO function added to every remove button as its made
+function removeClimb(event){
+	//
+
+}
+
 // Adds climb object to the given library
 // input: [arr] climb library, [obj] climb 
 // return: [arr] climb library
@@ -55,8 +61,8 @@ function addClimbToLibrary(library, climb) {
 function renderTable(table, data){
 	//clear current table
 	removeAllChildNodes(table);
-	let headerRow = Object.keys(data[0]);
 	generateTable(table, data);	
+	let headerRow = Object.keys(data[0]);
 	generateTableHead(table, headerRow)
 	
 }
@@ -80,15 +86,23 @@ function generateTableHead(table, headings){
 // input: [DOM table] table, [array of object] data
 // return: the table head
 function generateTable(table, data) {
+	let index = 0;
 	for (let element of data) {
 		let row = table.insertRow();
+		row.dataset.index = index;
 		for (key in element) {
 			let cell = row.insertCell();
 			let text = document.createTextNode(element[key]);
 			cell.appendChild(text);
 		}
+		let remove = row.insertCell();
+		let removeBtn = document.createElement('button');
+		removeBtn.textContent = 'Remove';
+		remove.appendChild(removeBtn);
+		index++;
 	}
 }
+
 
 // Removes all child nodes from a given DOM element
 // input: DOM element

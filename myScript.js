@@ -18,17 +18,21 @@ function Climb(name, grade, location, date, type, sent) {
 	this.sent = sent;
 }
 
+// Climb.prototype.toggleSend = function() {
+// 	this.send = !this.send; 
+// }
+
 
 //****Functions****
 
-function addClimb(event){
+function addClimb(e){
 	//prevents the form submit to reload page
-	event.preventDefault();
+	e.preventDefault();
 	let properties = ['name', 'grade', 'location', 'date', 'type', 'sent'];
 	const climb = new Climb(); 
-	let form = event.target;
+	let form = e.target;
 	let formInputs = form.elements;
-
+	// add ONLY the properties in a climb object
 	for (let element in formInputs){
 		let prop = formInputs[element].name;
 		let value = formInputs[element].value;
@@ -36,32 +40,38 @@ function addClimb(event){
 			climb[prop]= value;
 		}
 	}
+
+	console.log(climb);
+
+
 	//addClimbToLibrary
-	addClimbToLibrary(climbLib, climb);
+	climbLib = addClimbToLibrary(climbLib, climb);
 	//re renderTable
 	renderTable(climbTbl, climbLib);
 }
 
-// TODO function added to every remove button as its made
-function removeClimb(event){
-	//takes in row index
-	//removeClimbFromLibrary(library, climbIndex)
+// function added to every remove button as its made
+// input: [num] index of climb to be removed
+function removeClimb(index){
+	climbLib = removeClimbFromLibrary(climbLib, index);
 	//re renderTable(table, library)
-
+	renderTable(climbTbl, climbLib);
 }
 
-// Adds climb object to the given library
+// Adds climb object to a copy of the given library
 // input: [arr] climb library, [obj] climb 
-// return: [arr] climb library
+// return: [arr] copy of library
 function addClimbToLibrary(library, climb) {
-	library.push(climb);	
-	return library;
+	return library.concat(climb);
 }
 
+// removes a climb object from a copy of given library
+// input: [array] library, [num] index of climb to remove
+// return: a new library array with the climb removed
 function removeClimbFromLibrary(library, climbIndex) {
-	//new variable to store modified library to return
-	//newLibrary with climb taken out
-	//return the newLibrary
+	let newLib = [...library];
+	newLib.splice(climbIndex, 1);
+	return newLib;
 }
 
 // Renders a DOM table element with the given data
@@ -74,10 +84,8 @@ function renderTable(table, data){
 	generateTableHead(table, headerRow)
 	//add event listeners to remove buttons
 	let removeBtns = document.querySelectorAll('button');
-	//click event, removeClimb function (pass in row index) 
-	removeBtns.forEach(btn => btn.addEventListener('click', removeClimb));
-
-
+	//passs in row index to removeClimb (row = button->cell->row)
+	removeBtns.forEach(btn => btn.addEventListener('click', () => {removeClimb(btn.parentNode.parentNode.dataset.index)}));
 }
 
 // Generates a table head for a given DOM table

@@ -24,7 +24,7 @@ function Climb(name, grade, location, date, type, sent) {
 function addClimb(event){
 	//prevents the form submit to reload page
 	event.preventDefault();
-	let props = ['name', 'grade', 'location', 'date', 'type', 'sent'];
+	let properties = ['name', 'grade', 'location', 'date', 'type', 'sent'];
 	const climb = new Climb(); 
 	let form = event.target;
 	let formInputs = form.elements;
@@ -32,7 +32,7 @@ function addClimb(event){
 	for (let element in formInputs){
 		let prop = formInputs[element].name;
 		let value = formInputs[element].value;
-		if (props.includes(prop)){
+		if (properties.includes(prop)){
 			climb[prop]= value;
 		}
 	}
@@ -44,7 +44,9 @@ function addClimb(event){
 
 // TODO function added to every remove button as its made
 function removeClimb(event){
-	//
+	//takes in row index
+	//removeClimbFromLibrary(library, climbIndex)
+	//re renderTable(table, library)
 
 }
 
@@ -56,6 +58,12 @@ function addClimbToLibrary(library, climb) {
 	return library;
 }
 
+function removeClimbFromLibrary(library, climbIndex) {
+	//new variable to store modified library to return
+	//newLibrary with climb taken out
+	//return the newLibrary
+}
+
 // Renders a DOM table element with the given data
 // input: DOM table, [arr of objects] data 
 function renderTable(table, data){
@@ -64,7 +72,12 @@ function renderTable(table, data){
 	generateTable(table, data);	
 	let headerRow = Object.keys(data[0]);
 	generateTableHead(table, headerRow)
-	
+	//add event listeners to remove buttons
+	let removeBtns = document.querySelectorAll('button');
+	//click event, removeClimb function (pass in row index) 
+	removeBtns.forEach(btn => btn.addEventListener('click', removeClimb));
+
+
 }
 
 // Generates a table head for a given DOM table
